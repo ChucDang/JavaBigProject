@@ -14,7 +14,7 @@ public class MatrixApp{
 		mainFrame.getContentPane().add(new Matrix_UI(), BorderLayout.CENTER);
 		
 		mainFrame.add(lbltitle, BorderLayout.NORTH);
-		mainFrame.setSize(1100,400);
+		mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH); // Đặt JFrame full màn hình.
 		mainFrame.setLocationRelativeTo(null);
 		mainFrame.setVisible(true);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

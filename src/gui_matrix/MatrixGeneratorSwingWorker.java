@@ -11,13 +11,15 @@ import javax.swing.SwingWorker;
 public class MatrixGeneratorSwingWorker {
 
 
-	public void Generator(int M, int N, JPanel name, JTextField[][] jf, boolean check) {
+	public void Generator(int M, int N, JPanel name, JTextField[][] jf, boolean check) {// Hàm tạo ma trận random
 		name.setLayout(new GridLayout(M, N));
 		GridBagConstraints gc = new GridBagConstraints();
 		Random rd = new Random();
 		gc.gridy = 0;
 
 		SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
+//			SwingWorker hổ trợ chạy các tác vụ chạy dài trên Chuỗi xử lý sự kiện không khiến GUI bị khóa 
+//			và cho phép trả lại dữ liệu từ Runnable được thực thi cho phương thức ban đầu
 			@Override
 			protected Void doInBackground() throws Exception {
 				for (int v = 0; v < M; v++) {
@@ -43,7 +45,7 @@ public class MatrixGeneratorSwingWorker {
 
 	}
 
-	public void GeneratorMatrixResult(int M, int N, JPanel name, int[][] result, JTextField[][] jf) {
+	public void GeneratorMatrixResult(int M, int N, JPanel name, int[][] result, JTextField[][] jf) {// Hàm tổng hợp ma trận kết quả
 		M = result.length;
 		N = result[0].length;
 		name.setLayout(new GridLayout(M, N));

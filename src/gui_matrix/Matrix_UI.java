@@ -50,7 +50,6 @@ public class Matrix_UI extends JPanel {
 
 	private JButton btnCreate1 = new JButton("Tạo ma trận 1");
 	private JButton btnCreate2 = new JButton("Tạo ma trận 2");
-	private JButton btnMultiply = new JButton("Nhân 2 ma trận");
 	private JButton btnResult = new JButton("Ma trận kết quả");
 	private JButton btnReset = new JButton("Tạo mới");
 	private JButton btnRead1 = new JButton("Đọc từ file");
@@ -65,17 +64,17 @@ public class Matrix_UI extends JPanel {
 	private JCheckBox checkBox1 = new JCheckBox("Random");
 	private JCheckBox checkBox2 = new JCheckBox("Random");
 
-	
+
 	private static int[][] mtr1, mtr2, mtrResult;//Biến lưu giá trị của mảng tương ứng với các ma trận
 	private JTextField matrix11[][], matrix22[][], matrix33[][];//Mảng các JTextField thể hiện giá trị của ma trận lên giao diện
 	public static int row1, col1, row2, col2, row3, col3;//Biến chứa giá trị hàng và cột của các ma trận
 	static boolean flagCreate1 = false;
-	
+
 	/*
 	 * Jpanel chính
 	 * */
 	public Matrix_UI() {
-		
+
 		setLayout(new GridBagLayout());
 		GridBagConstraints gc = new GridBagConstraints();
 		gc.anchor = GridBagConstraints.NORTHWEST;
@@ -174,7 +173,7 @@ public class Matrix_UI extends JPanel {
 		gc.gridwidth = 2;
 		jp.add(btnRead1, gc);
 		btnRead1.addActionListener(new ButtonHandler());
-		
+
 		gc.gridx = 3;
 		gc.gridy = 1;
 		gc.gridwidth = 2;
@@ -182,7 +181,7 @@ public class Matrix_UI extends JPanel {
 		btnGet1.addActionListener(new ButtonHandler());
 		btnGet1.setEnabled(false);
 
-		
+
 
 		return jp;
 	}
@@ -232,7 +231,7 @@ public class Matrix_UI extends JPanel {
 		gc.gridwidth = 2;
 		jp.add(btnRead2, gc);
 		btnRead2.addActionListener(new ButtonHandler());
-		
+
 		gc.gridx = 3;
 		gc.gridy = 1;
 		gc.gridwidth = 2;
@@ -256,10 +255,6 @@ public class Matrix_UI extends JPanel {
 		gc.weightx = 1.0;
 		gc.fill = GridBagConstraints.BOTH;
 		gc.insets = new Insets(4, 1, 4, 1);
-		jp.add(btnMultiply,gc);
-		btnMultiply.addActionListener(new ButtonHandlerResult());
-		
-		gc.gridx++;
 		jp.add(btnResult, gc);
 		btnResult.addActionListener(new ButtonHandlerResult());
 		btnResult.setEnabled(false);
@@ -278,7 +273,7 @@ public class Matrix_UI extends JPanel {
 	private boolean isEmptyFields2() {
 		return (tfRow2.getText().trim().isEmpty() || tfCol2.getText().trim().isEmpty());
 	}
-	
+
 
 	/*
 	 * Lớp xử lý sự kiện cho bảng điều khiển của ma trận 1
@@ -294,7 +289,7 @@ public class Matrix_UI extends JPanel {
 					return;
 				} else {
 					try {
-						
+
 						int row1 = Integer.parseInt(tfRow1.getText().trim());
 						int col1 = Integer.parseInt(tfCol1.getText().trim());
 						matrix11 = new JTextField[row1][col1];
@@ -302,14 +297,14 @@ public class Matrix_UI extends JPanel {
 						tfCol1.setEnabled(false);
 						MatrixGeneratorSwingWorker mg1 = new MatrixGeneratorSwingWorker();
 						mg1.Generator(row1, col1, gMatrix1, matrix11, checkBox1.isSelected());
-						
+
 						btnCreate1.setEnabled(false);
 						tfRow2.setText(tfCol1.getText().trim());
 						tfRow2.setEnabled(false);
 						btnCancel1.setEnabled(true);
 						btnGet1.setEnabled(true);
 						flagCreate1 = true;
-						
+
 					} catch (Exception ex) {
 						tfRow1.setText("");
 						tfCol1.setText("");
@@ -327,34 +322,34 @@ public class Matrix_UI extends JPanel {
 
 			}
 			if (e.getSource() == btnRead1) {
-				
-//				Cancel(tfRow1, tfCol1, gMatrix1, true);
-//				JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-//				int returnValue = jfc.showOpenDialog(null);
-//				if (returnValue == JFileChooser.APPROVE_OPTION) {
-//					File selectedFile = jfc.getSelectedFile();
-//					String path = selectedFile.getAbsolutePath();
-//					System.out.println(selectedFile.getAbsolutePath());
-//					FileRead_Write fr = new FileRead_Write();
-//					try {
-//						Matrix_UI.mtr1 = fr.ReadData(path);
-//					} catch (IOException e1) {
-//
-//						e1.printStackTrace();
-//					}
-//					int row = Matrix_UI.mtr1.length;
-//					int col = Matrix_UI.mtr1[0].length;
-//					matrix11 = new JTextField[row][col];
-//					MatrixGeneratorSwingWorker mg = new MatrixGeneratorSwingWorker();
-//					mg.GeneratorMatrixResult(row,col,gMatrix1, Matrix_UI.mtr1, matrix11);
-//					JOptionPane.showMessageDialog(null, "Đọc file thành công");
-//					btnGet1.setEnabled(true);
-//					Matrix_UI.flagCreate1 = false;
-//					tfRow1.setText(String.valueOf(row));
-//					tfCol1.setText(String.valueOf(col));
-//					tfRow2.setText(String.valueOf(col));
-//					tfRow1.setEnabled(false);
-//					tfCol1.setEnabled(false);
+
+				//				Cancel(tfRow1, tfCol1, gMatrix1, true);
+				//				JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+				//				int returnValue = jfc.showOpenDialog(null);
+				//				if (returnValue == JFileChooser.APPROVE_OPTION) {
+				//					File selectedFile = jfc.getSelectedFile();
+				//					String path = selectedFile.getAbsolutePath();
+				//					System.out.println(selectedFile.getAbsolutePath());
+				//					FileRead_Write fr = new FileRead_Write();
+				//					try {
+				//						Matrix_UI.mtr1 = fr.ReadData(path);
+				//					} catch (IOException e1) {
+				//
+				//						e1.printStackTrace();
+				//					}
+				//					int row = Matrix_UI.mtr1.length;
+				//					int col = Matrix_UI.mtr1[0].length;
+				//					matrix11 = new JTextField[row][col];
+				//					MatrixGeneratorSwingWorker mg = new MatrixGeneratorSwingWorker();
+				//					mg.GeneratorMatrixResult(row,col,gMatrix1, Matrix_UI.mtr1, matrix11);
+				//					JOptionPane.showMessageDialog(null, "Đọc file thành công");
+				//					btnGet1.setEnabled(true);
+				//					Matrix_UI.flagCreate1 = false;
+				//					tfRow1.setText(String.valueOf(row));
+				//					tfCol1.setText(String.valueOf(col));
+				//					tfRow2.setText(String.valueOf(col));
+				//					tfRow1.setEnabled(false);
+				//					tfCol1.setEnabled(false);
 
 				//}
 			}
@@ -386,6 +381,7 @@ public class Matrix_UI extends JPanel {
 					btnCancel2.setEnabled(true);
 					btnGet2.setEnabled(true);
 					btnRead1.setEnabled(false);
+					btnRead2.setEnabled(false);
 					JOptionPane.showMessageDialog(null, "Đã nhận giá trị của ma trận 1 thành công");
 					return;
 				} catch (Exception ex) {
@@ -460,15 +456,14 @@ public class Matrix_UI extends JPanel {
 
 			}
 			if(e.getSource() == btnRead2) {
-				
+
 			}
 			if (e.getSource() == btnGet2) {
 				if (Integer.parseInt(tfRow2.getText().trim()) != Integer.parseInt(tfCol1.getText().trim())) {
-					JOptionPane.showMessageDialog(null,
-							"Số dòng của ma trận 2 phải bằng với số cột của ma trận 1");
+					JOptionPane.showMessageDialog(null,"Số dòng của ma trận 2 phải bằng với số cột của ma trận 1");
 					return;
 				}
-				
+
 				try {
 					Matrix_UI.row2 = Integer.parseInt(tfRow2.getText().trim());
 					Matrix_UI.col2 = Integer.parseInt(tfCol2.getText().trim());
@@ -518,15 +513,7 @@ public class Matrix_UI extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if (e.getSource() == btnResult) {			
-				Matrix_UI.row3 = Matrix_UI.mtrResult.length;
-				Matrix_UI.col3 = Matrix_UI.mtrResult[0].length;
-				matrix33 = new JTextField[Matrix_UI.row3][Matrix_UI.col3];
-				MatrixGeneratorSwingWorker mg = new MatrixGeneratorSwingWorker();
-				mg.GeneratorMatrixResult(Matrix_UI.row3,Matrix_UI.col3,matrixResult, Matrix_UI.mtrResult, matrix33);
-				btnResult.setEnabled(false);
-			}
-			if (e.getSource() == btnMultiply) {
+			if (e.getSource() == btnResult) {	
 				try {
 					Matrix_UI.mtrResult = new int[Matrix_UI.mtr1.length][Matrix_UI.mtr2[0].length];
 					MatrixMultiplicationParallel mf = new MatrixMultiplicationParallel();
@@ -538,12 +525,20 @@ public class Matrix_UI extends JPanel {
 
 						}
 					}
-					JOptionPane.showMessageDialog(null, "Đã nhân xong");
-					return;
 				}catch(Exception ex) {
 					JOptionPane.showMessageDialog(null, "Vui lòng nhận giá trị của ma trận trước");
 					return;
 				}
+				
+				Matrix_UI.row3 = Matrix_UI.mtrResult.length;
+				Matrix_UI.col3 = Matrix_UI.mtrResult[0].length;
+				matrix33 = new JTextField[Matrix_UI.row3][Matrix_UI.col3];
+				MatrixGeneratorSwingWorker mg = new MatrixGeneratorSwingWorker();
+				mg.GeneratorMatrixResult(Matrix_UI.row3,Matrix_UI.col3,matrixResult, Matrix_UI.mtrResult, matrix33);
+				btnResult.setEnabled(false);
+//				btnGet2
+				JOptionPane.showMessageDialog(null, "Đã nhân xong");
+
 			}
 			if (e.getSource() == btnReset) {
 				Cancel(tfRow1, tfCol1, gMatrix1,true);
@@ -553,7 +548,8 @@ public class Matrix_UI extends JPanel {
 				matrixResult.setVisible(false);
 				btnRead1.setEnabled(true);
 				matrixResult.removeAll();
-				
+				JOptionPane.showMessageDialog(null, "Reset thành công");
+
 			}
 
 		}
